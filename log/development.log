@@ -1142,3 +1142,421 @@ Processing by Devise::SessionsController#new as HTML
 Completed 200 OK in 91ms (Views: 90.5ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-03-29 16:28:07 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChatRoomsController#index as HTML
+Completed 401 Unauthorized in 26ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-29 16:28:07 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (22.4ms)
+Completed 200 OK in 579ms (Views: 560.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-03-29 16:28:11 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 64ms (Views: 59.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-03-29 16:28:23 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"99QZZk65d6NFg6SdDIJzKh+pr7A4MDmBl8AUrkZoFN1jqytpu8xJnLvaTGMbDrcTTe+G3VMw8uRGaxchLUnL2w==", "user"=>{"email"=>"james.alberts415@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "james.alberts415@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "james.alberts415@gmail.com"], ["encrypted_password", "$2a$11$m/i6ykwqAiXOCP8OaG3ewOsDaQZ./lG/qwyowde3DgO5RV58t5PeW"], ["created_at", 2017-03-29 14:28:23 UTC], ["updated_at", 2017-03-29 14:28:23 UTC]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.7ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", 2017-03-29 14:28:23 UTC], ["last_sign_in_at", 2017-03-29 14:28:23 UTC], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", 2017-03-29 14:28:23 UTC], ["id", 1]]
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 353ms (ActiveRecord: 17.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-29 16:28:23 +0200
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (2.8ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+  Rendered collection of templates [0 times] (0.0ms)
+  Rendered chat_rooms/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 87ms (Views: 67.9ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/chat_rooms/new" for 127.0.0.1 at 2017-03-29 16:28:28 +0200
+Processing by ChatRoomsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/new.html.erb within layouts/application
+  Rendered chat_rooms/new.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 63ms (Views: 54.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_rooms" for 127.0.0.1 at 2017-03-29 16:28:39 +0200
+Processing by ChatRoomsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zq2DDWa6p6dbknP0beL9JOHkFq5O1JaRpt7fze4EUfccF6haF7gnsOXraex5Q2LIOqkV2FYYiqlVaCevw/w3Rw==", "chat_room"=>{"title"=>"My Chat Room"}, "commit"=>"Add!"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO "chat_rooms" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "My Chat Room"], ["user_id", 1], ["created_at", 2017-03-29 14:28:39 UTC], ["updated_at", 2017-03-29 14:28:39 UTC]]
+  [1m[35m (12.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/chat_rooms
+Completed 302 Found in 46ms (ActiveRecord: 15.9ms)
+
+
+Started GET "/chat_rooms" for 127.0.0.1 at 2017-03-29 16:28:39 +0200
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+  Rendered collection of chat_rooms/_chat_room.html.erb [1 times] (0.6ms)
+  Rendered chat_rooms/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 81ms (Views: 78.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chat_rooms/new" for 127.0.0.1 at 2017-03-29 16:28:43 +0200
+Processing by ChatRoomsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/new.html.erb within layouts/application
+  Rendered chat_rooms/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 92ms (Views: 87.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/chat_rooms" for 127.0.0.1 at 2017-03-29 16:29:09 +0200
+Processing by ChatRoomsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mIip3KTeS2ygFQPXE24Eu4aed7Z0SNne2X/TFVFZWZ/iMoKL1dzLex5sGc8Hz5tXXdN0wGyExeYqySt3fKE/Lw==", "chat_room"=>{"title"=>"Your Chat Room"}, "commit"=>"Add!"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "chat_rooms" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Your Chat Room"], ["user_id", 1], ["created_at", 2017-03-29 14:29:09 UTC], ["updated_at", 2017-03-29 14:29:09 UTC]]
+  [1m[35m (10.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/chat_rooms
+Completed 302 Found in 18ms (ActiveRecord: 12.1ms)
+
+
+Started GET "/chat_rooms" for 127.0.0.1 at 2017-03-29 16:29:09 +0200
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+  Rendered collection of chat_rooms/_chat_room.html.erb [2 times] (0.7ms)
+  Rendered chat_rooms/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 83ms (Views: 81.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chat_rooms/1" for 127.0.0.1 at 2017-03-29 16:29:12 +0200
+Processing by ChatRoomsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1[0m
+  Rendering chat_rooms/show.html.erb within layouts/application
+  Rendered collection of templates [0 times] (0.0ms)
+  Rendered chat_rooms/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 78ms (Views: 55.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2017-03-29 16:29:12 +0200
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-03-29 16:29:12 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com] Registered connection (Z2lkOi8vY2FibGUtY2hhdC9Vc2VyLzE)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel is transmitting the subscription confirmation
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel is streaming from chat_rooms_1_channel
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"dasdff", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.2ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "dasdff"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:16 UTC], ["updated_at", 2017-03-29 14:29:16 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (13.7ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: f3496f63-c9bf-44c6-9599-c1bf9066cf3e) to Async(default) with arguments: #<GlobalID:0x007f16c8bb45f0 @uri=#<URI::GID gid://cable-chat/Message/1>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c8b1ed98 @uri=#<URI::GID gid://cable-chat/Message/1>>
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e]   [1m[36mChatRoom Load (0.2ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e]   Rendered messages/_message.html.erb (8.4ms)
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:16 29 March 2017 says</span><br>\n          dasdff\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [f3496f63-c9bf-44c6-9599-c1bf9066cf3e] Performed MessageBroadcastJob from Async(default) in 16.98ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"dfdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "dfdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:18 UTC], ["updated_at", 2017-03-29 14:29:18 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (17.6ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 716c882e-52ad-4b72-a302-5f5eb8984889) to Async(default) with arguments: #<GlobalID:0x007f16dc10b630 @uri=#<URI::GID gid://cable-chat/Message/2>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x00000004b3ce88 @uri=#<URI::GID gid://cable-chat/Message/2>>
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889]   Rendered messages/_message.html.erb (4.3ms)
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:18 29 March 2017 says</span><br>\n          dfdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [716c882e-52ad-4b72-a302-5f5eb8984889] Performed MessageBroadcastJob from Async(default) in 12.0ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"fdsf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (2.2ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "fdsf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:21 UTC], ["updated_at", 2017-03-29 14:29:21 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 36ff3581-fe09-4150-9134-26b847da0efd) to Async(default) with arguments: #<GlobalID:0x007f16c992f270 @uri=#<URI::GID gid://cable-chat/Message/3>>
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c98ef238 @uri=#<URI::GID gid://cable-chat/Message/3>>
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd]   Rendered messages/_message.html.erb (3.7ms)
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:21 29 March 2017 says</span><br>\n          fdsf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [36ff3581-fe09-4150-9134-26b847da0efd] Performed MessageBroadcastJob from Async(default) in 11.42ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:23 UTC], ["updated_at", 2017-03-29 14:29:23 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (20.1ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 1255ebbf-4158-4b46-a361-f7cfaa1091eb) to Async(default) with arguments: #<GlobalID:0x007f16dc5f34b8 @uri=#<URI::GID gid://cable-chat/Message/4>>
+  [1m[36mMessage Load (0.4ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16dc5e3e28 @uri=#<URI::GID gid://cable-chat/Message/4>>
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb]   Rendered messages/_message.html.erb (6.0ms)
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:23 29 March 2017 says</span><br>\n          asdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [1255ebbf-4158-4b46-a361-f7cfaa1091eb] Performed MessageBroadcastJob from Async(default) in 10.33ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:25 UTC], ["updated_at", 2017-03-29 14:29:25 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (44.3ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: f62c6e82-df4b-4cc6-9f65-e5f0aac3adca) to Async(default) with arguments: #<GlobalID:0x007f16dc589ef0 @uri=#<URI::GID gid://cable-chat/Message/5>>
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16dc57f568 @uri=#<URI::GID gid://cable-chat/Message/5>>
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca]   Rendered messages/_message.html.erb (3.5ms)
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:25 29 March 2017 says</span><br>\n          asdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [f62c6e82-df4b-4cc6-9f65-e5f0aac3adca] Performed MessageBroadcastJob from Async(default) in 11.2ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:27 UTC], ["updated_at", 2017-03-29 14:29:27 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (14.0ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: b61301ed-d447-4267-9be9-a882eba1743b) to Async(default) with arguments: #<GlobalID:0x007f16c96498d0 @uri=#<URI::GID gid://cable-chat/Message/6>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c95de468 @uri=#<URI::GID gid://cable-chat/Message/6>>
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b]   [1m[36mChatRoom Load (0.0ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b]   Rendered messages/_message.html.erb (5.7ms)
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:27 29 March 2017 says</span><br>\n          asdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [b61301ed-d447-4267-9be9-a882eba1743b] Performed MessageBroadcastJob from Async(default) in 10.76ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:29:29 UTC], ["updated_at", 2017-03-29 14:29:29 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (18.9ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 7ea14c12-8697-407e-b79c-11f83d4dee58) to Async(default) with arguments: #<GlobalID:0x007f16c924e668 @uri=#<URI::GID gid://cable-chat/Message/7>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c91f54a0 @uri=#<URI::GID gid://cable-chat/Message/7>>
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58]   Rendered messages/_message.html.erb (6.3ms)
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:29:29 29 March 2017 says</span><br>\n          asdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [7ea14c12-8697-407e-b79c-11f83d4dee58] Performed MessageBroadcastJob from Async(default) in 10.33ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"ehrdkqhausgptkddp\n", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.7ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "ehrdkqhausgptkddp\n"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:32:11 UTC], ["updated_at", 2017-03-29 14:32:11 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (16.9ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 38e1d434-4045-49b6-9b71-3ef243a2a434) to Async(default) with arguments: #<GlobalID:0x007f16c8c62718 @uri=#<URI::GID gid://cable-chat/Message/8>>
+  [1m[36mMessage Load (2.0ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c88ae798 @uri=#<URI::GID gid://cable-chat/Message/8>>
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434]   Rendered messages/_message.html.erb (10.2ms)
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:11 29 March 2017 says</span><br>\n          ehrdkqhausgptkddp\n\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [38e1d434-4045-49b6-9b71-3ef243a2a434] Performed MessageBroadcastJob from Async(default) in 22.14ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdfasdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (3.5ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdfasdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:32:15 UTC], ["updated_at", 2017-03-29 14:32:15 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (17.3ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 9658b0d4-283d-4822-9762-21bea3bd2734) to Async(default) with arguments: #<GlobalID:0x007f16c90295b8 @uri=#<URI::GID gid://cable-chat/Message/9>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c906e7a8 @uri=#<URI::GID gid://cable-chat/Message/9>>
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734]   [1m[36mChatRoom Load (1.2ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734]   Rendered messages/_message.html.erb (10.5ms)
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:15 29 March 2017 says</span><br>\n          asdfasdfasdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [9658b0d4-283d-4822-9762-21bea3bd2734] Performed MessageBroadcastJob from Async(default) in 15.59ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdf", "chat_room_id"=>1})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.9ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (3.6ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdf"], ["user_id", 1], ["chat_room_id", 1], ["created_at", 2017-03-29 14:32:18 UTC], ["updated_at", 2017-03-29 14:32:18 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: e418b449-07db-498b-9ef4-3d93119a11b3) to Async(default) with arguments: #<GlobalID:0x007f16c93fdb08 @uri=#<URI::GID gid://cable-chat/Message/10>>
+  [1m[36mMessage Load (3.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c94c5248 @uri=#<URI::GID gid://cable-chat/Message/10>>
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3]   [1m[36mChatRoom Load (0.5ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3]   [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3]   Rendered messages/_message.html.erb (8.8ms)
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3] [ActionCable] Broadcasting to chat_rooms_1_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:18 29 March 2017 says</span><br>\n          asdfasdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [e418b449-07db-498b-9ef4-3d93119a11b3] Performed MessageBroadcastJob from Async(default) in 21.51ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_1_channel)
+Started GET "/chat_rooms/2" for 127.0.0.1 at 2017-03-29 16:32:23 +0200
+Processing by ChatRoomsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 2[0m
+  Rendering chat_rooms/show.html.erb within layouts/application
+  Rendered collection of templates [0 times] (0.0ms)
+  Rendered chat_rooms/show.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 134ms (Views: 119.0ms | ActiveRecord: 2.9ms)
+
+
+[ActionCable] [james.alberts415@gmail.com] Finished "/cable/" [WebSocket] for 127.0.0.1 at 2017-03-29 16:32:23 +0200
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel stopped streaming from chat_rooms_1_channel
+Started GET "/cable" for 127.0.0.1 at 2017-03-29 16:32:23 +0200
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-03-29 16:32:23 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com] Registered connection (Z2lkOi8vY2FibGUtY2hhdC9Vc2VyLzE)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel is transmitting the subscription confirmation
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel is streaming from chat_rooms_2_channel
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:26 UTC], ["updated_at", 2017-03-29 14:32:26 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 9df70f27-2648-4e83-afda-a517d62ac48b) to Async(default) with arguments: #<GlobalID:0x007f16dc6bc0e8 @uri=#<URI::GID gid://cable-chat/Message/11>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16e01dca88 @uri=#<URI::GID gid://cable-chat/Message/11>>
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b]   [1m[36mChatRoom Load (0.0ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b]   Rendered messages/_message.html.erb (8.3ms)
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:26 29 March 2017 says</span><br>\n          asdfasdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [9df70f27-2648-4e83-afda-a517d62ac48b] Performed MessageBroadcastJob from Async(default) in 17.06ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:28 UTC], ["updated_at", 2017-03-29 14:32:28 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 67e82ac0-c05d-47d9-a8bd-ee67c186a609) to Async(default) with arguments: #<GlobalID:0x007f16dc6c6458 @uri=#<URI::GID gid://cable-chat/Message/12>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16c9ae6708 @uri=#<URI::GID gid://cable-chat/Message/12>>
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609]   Rendered messages/_message.html.erb (8.5ms)
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:28 29 March 2017 says</span><br>\n          asdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [67e82ac0-c05d-47d9-a8bd-ee67c186a609] Performed MessageBroadcastJob from Async(default) in 14.6ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:30 UTC], ["updated_at", 2017-03-29 14:32:30 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: c41f248f-3b42-4cba-8090-5832e6fd979e) to Async(default) with arguments: #<GlobalID:0x007f16dc6c89d8 @uri=#<URI::GID gid://cable-chat/Message/13>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16e01fe070 @uri=#<URI::GID gid://cable-chat/Message/13>>
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e]   [1m[36mChatRoom Load (0.0ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e]   Rendered messages/_message.html.erb (3.8ms)
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:30 29 March 2017 says</span><br>\n          asdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [c41f248f-3b42-4cba-8090-5832e6fd979e] Performed MessageBroadcastJob from Async(default) in 12.06ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:32 UTC], ["updated_at", 2017-03-29 14:32:32 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 72d6bacb-e02b-4b8d-ae27-f2a85cab7336) to Async(default) with arguments: #<GlobalID:0x007f16dc6d3720 @uri=#<URI::GID gid://cable-chat/Message/14>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16dc601068 @uri=#<URI::GID gid://cable-chat/Message/14>>
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336]   [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336]   Rendered messages/_message.html.erb (12.5ms)
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:32 29 March 2017 says</span><br>\n          asdfasdasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [72d6bacb-e02b-4b8d-ae27-f2a85cab7336] Performed MessageBroadcastJob from Async(default) in 16.35ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdfadsf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdfadsf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:35 UTC], ["updated_at", 2017-03-29 14:32:35 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (19.4ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 60765e6a-2976-4f2f-9ec9-3b6b375b54a0) to Async(default) with arguments: #<GlobalID:0x007f16dc5e4bc0 @uri=#<URI::GID gid://cable-chat/Message/15>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16dc5e2550 @uri=#<URI::GID gid://cable-chat/Message/15>>
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0]   [1m[36mChatRoom Load (0.0ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0]   Rendered messages/_message.html.erb (6.2ms)
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:35 29 March 2017 says</span><br>\n          asdfasdfasdfasdfadsf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [60765e6a-2976-4f2f-9ec9-3b6b375b54a0] Performed MessageBroadcastJob from Async(default) in 10.0ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:38 UTC], ["updated_at", 2017-03-29 14:32:38 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 264c74b1-aff7-4938-b50d-c9081c38c69e) to Async(default) with arguments: #<GlobalID:0x007f16dc5c6940 @uri=#<URI::GID gid://cable-chat/Message/16>>
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16dc6d8158 @uri=#<URI::GID gid://cable-chat/Message/16>>
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e]   Rendered messages/_message.html.erb (5.6ms)
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:38 29 March 2017 says</span><br>\n          asdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [264c74b1-aff7-4938-b50d-c9081c38c69e] Performed MessageBroadcastJob from Async(default) in 9.11ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:41 UTC], ["updated_at", 2017-03-29 14:32:41 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (15.4ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: 5a597571-8a70-4d9a-ac5b-57dd8a8c038e) to Async(default) with arguments: #<GlobalID:0x007f16c9773be8 @uri=#<URI::GID gid://cable-chat/Message/17>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16e023ceb0 @uri=#<URI::GID gid://cable-chat/Message/17>>
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e]   [1m[36mChatRoom Load (0.0ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e]   Rendered messages/_message.html.erb (6.1ms)
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:41 29 March 2017 says</span><br>\n          asdfasdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [5a597571-8a70-4d9a-ac5b-57dd8a8c038e] Performed MessageBroadcastJob from Async(default) in 12.51ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel#send_message({"message"=>"asdfasdfasdfasdf", "chat_room_id"=>2})
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActionCable] [james.alberts415@gmail.com]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "chat_room_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "asdfasdfasdfasdf"], ["user_id", 1], ["chat_room_id", 2], ["created_at", 2017-03-29 14:32:44 UTC], ["updated_at", 2017-03-29 14:32:44 UTC]]
+[ActionCable] [james.alberts415@gmail.com]   [1m[35m (26.9ms)[0m  [1m[36mcommit transaction[0m
+[ActionCable] [james.alberts415@gmail.com] [ActiveJob] Enqueued MessageBroadcastJob (Job ID: aa9b52f1-ec90-4681-96c4-86cfa3c998f4) to Async(default) with arguments: #<GlobalID:0x007f16c97332c8 @uri=#<URI::GID gid://cable-chat/Message/18>>
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4] Performing MessageBroadcastJob from Async(default) with arguments: #<GlobalID:0x007f16e0254538 @uri=#<URI::GID gid://cable-chat/Message/18>>
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4]   [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4]   Rendered messages/_message.html.erb (3.1ms)
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4] [ActionCable] Broadcasting to chat_rooms_2_channel: {:message=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        <p class=\"card-text\">\n          <span class=\"text-muted\">james.alberts415 at 14:32:44 29 March 2017 says</span><br>\n          asdfasdfasdfasdf\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"}
+[ActiveJob] [MessageBroadcastJob] [aa9b52f1-ec90-4681-96c4-86cfa3c998f4] Performed MessageBroadcastJob from Async(default) in 9.63ms
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel transmitting {"message"=>"<div class=\"card\">\n  <div class=\"card-block\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n        <img alt=\"james.alberts415\" src=\"https://www.gravatar.com/avatar/ce0a94ca6cb8387af0a1f4d91cc55285?s=40\" />\n      </div>\n      <div class=\"col-md-11\">\n        ... (via streamed from chat_rooms_2_channel)
+Started GET "/chat_rooms" for 127.0.0.1 at 2017-03-29 16:32:58 +0200
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+  Rendered collection of chat_rooms/_chat_room.html.erb [2 times] (0.6ms)
+  Rendered chat_rooms/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 60ms (Views: 58.1ms | ActiveRecord: 0.3ms)
+
+
+[ActionCable] [james.alberts415@gmail.com] Finished "/cable/" [WebSocket] for 127.0.0.1 at 2017-03-29 16:32:59 +0200
+[ActionCable] [james.alberts415@gmail.com] ChatRoomsChannel stopped streaming from chat_rooms_2_channel
+Started GET "/" for 127.0.0.1 at 2017-03-29 16:33:05 +0200
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+  Rendered collection of chat_rooms/_chat_room.html.erb [2 times] (0.5ms)
+  Rendered chat_rooms/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 58ms (Views: 56.4ms | ActiveRecord: 0.3ms)
+
+
